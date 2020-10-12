@@ -1,17 +1,17 @@
 const prompt = require(`readline-sync`);
 var colors = require(`colors/safe`);
 
-doors = ["DOOR 1", "DOOR 2", "DOOR 3"]
+doors = [" DOOR 1", " DOOR 2", "DOOR 3"]
 
-const doors
+//const doors
 
 const maxGuesses = 3;
 let currentGuess = 0;
 const maxRange = 10;
 
-const maxGuessest = 3;
-let currentGuesst = 0;
-const maxRanget = 10;
+//const maxGuessest = 3;
+//let currentGuesst = 0;
+//const maxRanget = 10;
 
 let randomNumber = Math.floor(Math.random() * maxRange + 1);
 
@@ -61,10 +61,6 @@ let pGuess = prompt.question(
 ~ CHOOSE A NUMBER FROM 1 - 10 TO GET PAST THE GUARDS TO ATTAIN THE FUEL! ~ \n`
 );
 
-// 1. If they win !
-// 2. If they lose :(
-// 3. If they need to guess higher
-// 4. If they need to guess lower
 
 const handleGuess = (pGuess) => {
   for (let guesses = 0; guesses < maxGuesses; guesses++) {
