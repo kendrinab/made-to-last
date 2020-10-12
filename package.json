@@ -11,6 +11,7 @@
     "clui": "^0.3.6",
     "colors": "^1.4.0",
     "configstore": "^5.0.1",
+    "emoji": "^0.3.2",
     "figlet": "^1.5.0",
     "inquirer": "^7.3.3",
     "lodash": "^4.17.20",
@@ -19,5 +20,20 @@
     "simple-git": "^2.21.0",
     "space": "^0.22.2",
     "touch": "^3.1.0"
-  }
+  },
+  "description": "",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kendrinab/made-to-last.git"
+  },
+  "keywords": [],
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/kendrinab/made-to-last/issues"
+  },
+  "homepage": "https://github.com/kendrinab/made-to-last#readme"
 }

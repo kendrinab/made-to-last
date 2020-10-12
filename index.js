@@ -1,9 +1,17 @@
 const prompt = require(`readline-sync`);
 var colors = require(`colors/safe`);
 
+doors = ["DOOR 1", "DOOR 2", "DOOR 3"]
+
+const doors
+
 const maxGuesses = 3;
 let currentGuess = 0;
 const maxRange = 10;
+
+const maxGuessest = 3;
+let currentGuesst = 0;
+const maxRanget = 10;
 
 let randomNumber = Math.floor(Math.random() * maxRange + 1);
 
@@ -19,107 +27,118 @@ colors.setTheme({
   debug: "blue",
   error: "red",
 });
-
+console.log("\n");
 console.log(
   colors.debug(
-    "\nMizra: Welcome to Made to Last! My name is Mizra, and I will your partner on this mission today!\n"
+    "MIZRA: WELCOME TO MADE TO LAST... MY NAME IS MIZRA & I WILL BE YOUR VOIDWALKER ON THIS MISSION TODAY"
   )
-),
-  console.log(
-    colors.debug(
-      "Mizra: Lets hop into our spaceship, we've got lots of work to do!\n"
-    )
-  );
+);
+console.log("\n");
+console.log(
+  colors.debug(
+    "MIZRA: LET'S HOP INTO OUR SPACESHIP, WE'VE GOT LOTS OF WORK TO DO!"
+  )
+);
+console.log("\n\n");
 console.log(
   colors.brightYellow(
-    `* Heading towards our mission, Mizra notices something *\n`
+    `* HEADING TOWARDS OUR MISSION... MIZRA NOTICES SOMETHING *\n`
   )
 );
+console.log("\n\n");
 console.log(
   colors.debug(
-    "Mizra:' Uh oh... Looks like I forgot to refuel before we left.. heh.. whoops.. we might have to make a quick pit stop at our bestfriends station!... hehe sorry...\n"
+    "MIZRA: UH OH... I FORGOT TO REFUEL BEFORE WE LEFT... HEH.. WHOOPS... *SIGHS* LOOKS LIKE WE HAVE TO MAKE OUR PIT STOP IN THIS SYSTEM... READY TO SAY HI TO OUR BEST FRIENDS?\n"
   )
 );
-
-let userGuess = prompt.question(
-  `"You've entered a planetary system that requires you to choose a class number 
-  between 1 & ${maxRange} to get past the guards so we could get the doors where 
-  the fuel is. Since you're running low on fuel, you must disguise yourself to 
-   enter the correct door without being discovered to get fueled up" You have ${maxGuesses} 
-        tries to guess which number will lead you to the correct door."
-~ Choose a number from 1 - 10 to get past the guards to attain the fuel! ~ \n`
+console.log("\n\n");
+let pGuess = prompt.question(
+  `"YOU'VE ENTERED A PLANETARY SYSTEM THAT REQUIRES YOU TO CHOOSE A CLASS LANE 
+  BETWEEN 1 & ${maxRange} TO GET PAST THE GUARDS SO WE COULD GET THE DOORS WHERE 
+  THE FUEL IS. SINCE YOU'RE RUNNING LOW ON FUEL, YOU MUST DISGUISE YOURSELF TO 
+   ENTER THE CORRECT DOOR WITHOUT BEING DISCOVERED TO GET FUELED UP" YOU HAVE ${maxGuesses} 
+        TRIES TO GUESS WHICH LANE WILL LEAD YOU TO THE CORRECT DOOR."
+~ CHOOSE A NUMBER FROM 1 - 10 TO GET PAST THE GUARDS TO ATTAIN THE FUEL! ~ \n`
 );
 
-//Write a function that will take the user's guess as a
 // 1. If they win !
 // 2. If they lose :(
 // 3. If they need to guess higher
 // 4. If they need to guess lower
 
-function handleGuess(userGuess) {
+const handleGuess = (pGuess) => {
   for (let guesses = 0; guesses < maxGuesses; guesses++) {
-    if (userGuess == randomNumber) {
+    if (pGuess == randomNumber) {
       console.log(
-        colors.silly.underline(
-          `You're good at this! Now let's get past the doors so we could get the fuel!\n`
+        colors.rainbow(
+          `YOU'RE GOOD AT THIS! NOW LET'S GET PAST THE DOORS SO WE COULD GET THE FUEL!\n`
+        )
+      );
+
+    } else if (guesses === maxGuesses - 1) {
+      console.log(
+        colors.red.underline(
+          `OH NO! YOU PICKED THE WRONG ONE! \n   IT WAS LANE ${randomNumber}, RUN!\n`
         )
       );
       playAgain();
-    } else if (guesses === maxGuesses - 1) {
-      console.log(
-        colors.error(
-          `Oh no you've open the wrong door! It was Door ${randomNumber}, RUN!\n`
-        )
-      );
-    } else if (userGuess > randomNumber) {
-      console.log(colors.red.underline(`Think Again, Hurry!\n`));
+    } else if (pGuess > randomNumber) {
+      think("lower\n");
+      console.log(colors.red.underline(`THINK AGAIN, HURRY!`));
       currentGuess++;
       console.log(`Guesses left: `, maxGuesses - currentGuess);
-      userGuess = prompt.question(`Guess Again, Hurry before they find us! \n`);
+      pGuess = prompt.question(`\nGUESS AGAIN OR WE'RE GONNA BE TOAST!!\n`);
     } else {
-      console.log(colors.warn(`But it's not quite right! Let's try again!\n`));
+      think("higher\n");
+      console.log(colors.red.underline(`Not quite right! Let's try again!`));
       currentGuess++;
       console.log(`Guesses left: `, maxGuesses - currentGuess);
-      newGuess = prompt.question(`Guess Again, Hurry before they find us! \n`);
+      pGuess = prompt.question(`\nGUESS AGAIN OR WE'RE GONNA BE TOAST!!\n`);
     }
+  }
+};
+
+const think = (direction) => {
+  console.log(`Think ${direction}`);
+  currentGuess++;
+  console.log("Guesses Left: ", maxGuesses - currentGuess);
+};
+
+function playAgain() {
+  let playQuestion = prompt.question(
+    `YOU STILL HAVE TIME TO GET THAT FUEL.. DON'T GIVE UP NOW! LETS TRY AGAIN! y || n \n`
+  );
+  //playAgain = playAgain.toLowerCase();
+
+  if (playQuestion === `y`) {
+    randomNumber = Math.floor(Math.random() * maxRange + 1);
+    let newGuess = prompt.question(
+      `"YOU'VE ENTERED A PLANETARY SYSTEM THAT REQUIRES YOU TO CHOOSE A CLASS LANE 
+      BETWEEN 1 & ${maxRange} TO GET PAST THE GUARDS SO WE COULD GET THE DOORS WHERE 
+      THE FUEL IS. SINCE YOU'RE RUNNING LOW ON FUEL, YOU MUST DISGUISE YOURSELF TO 
+       ENTER THE CORRECT DOOR WITHOUT BEING DISCOVERED TO GET FUELED UP" YOU HAVE ${maxGuesses} 
+            TRIES TO GUESS WHICH LANE WILL LEAD YOU TO THE CORRECT DOOR."
+    \n\n~ CHOOSE A NUMBER FROM 1 - 10 TO GET PAST THE GUARDS TO ATTAIN THE FUEL! ~ \n\n`
+    );
+    currentGuess = 0;
+    guesses = 0;
+    handleGuess(newGuess);
+  } else {
+    console.log(`AT LEAST YOU TRIED \n'TIL NEXT MISSION, NEXT PLANET!`);
   }
 }
 
-handleGuess(userGuess);
+//console.log("THAT WAS PRETTY IMPRESSIVE.. NOW LETS HOPE YOU HAVE THE SAME LUCK CHOOSING THE RIGHT DOOR");
 
-//userGuess = prompt.keyInSelect(['DOOR1', 'DOOR2', 'DOOR3'], 'WHICH WOULD YOU CHOOSE?');
-//if (userGuess === 0) {
+//pGuesst = prompt.keyInSelect(['DOOR1', 'DOOR2', 'DOOR3'], 'WHICH WOULD YOU CHOOSE?');
+//if (pGuesst === 0) {
 //console.log(colors.verbose("A brave choice..."));
 //handleGuess();
-//} else if (userGuess === 1) {
+//} else if (pGuesst === 1) {
 //console.log("Oh well.. Maybe next time.");
 
 //} else {
 //console.log("CLEAR! LETS MOVE IT!");
 //process.exit();
 //}
-
-const playAgain = () => {
-  let playQuestion = prompt.question(
-    `You still have time to get that fuel! Lets try again! y || n 
-    \n`
-  );
-  if (playQuestion === `y`) {
-    randomNumber = Math.floor(Math.random() * maxRange + 1);
-    let newGuess = prompt.question(
-      `"You've entered a planetary system that requires you to choose a class number 
-      between 1 & ${maxRange} to get past the guards so we could get the doors where 
-      the fuel is. Since you're running low on fuel, you must disguise yourself to enter 
-      the correct door without being discovered to get fueled up" 
-      You have ${maxGuesses} tries to guess which number will lead you to the correct door."
-    \n~ Choose a number from 1 - 10 to get past the guards to attain the fuel! ~ \n`
-    );
-    currentGuess = 0;
-    guesses = 0;
-    handleGuess(newGuess);
-  } else {
-    console.log(`At least you tried! \n'Til next Mission!`);
-  }
-};
-
-playAgain();
+handleGuess(pGuess);
