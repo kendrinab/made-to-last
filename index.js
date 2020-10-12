@@ -26,6 +26,7 @@ console.log(
     "Mizra: 'Lets hop into our spaceship, we've got lots of work to do!'"
   )
 );
+
 console.log(
   colors.error(
     "Mizra: 'Uh oh... Looks like I forgot to refuel before we left.. heh.. whoops.. we might have to make a quit pit stop at our bestfriends station!... hehe sorry..."
